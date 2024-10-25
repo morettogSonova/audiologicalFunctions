@@ -1,6 +1,5 @@
 #! this files contains various classes for evaluation of audiological quantities
 import numpy as np
-from scipy.interpolate import interp1d
 
 #%%
 class AudiogramEval:
@@ -41,10 +40,9 @@ class AudiogramEval:
         """
         return the 4 pure ton average hearing loss of an audiogram
         """
-        freqArray = AudiogramEval.frequencyArray(len(audiogram))
-        freq4PTA = AudiogramEval.frequencies[4]
-        fInterp = interp1d(freqArray,audiogram)
-
-        return fInterp(freq4PTA).mean()
- 
-
+        freqAudiogram = AudiogramEval.frequencyArray(len(audiogram))
+        freq4PTA = AudiogramEval.frequencyArray(4)
+        
+        indices = np.isin(freqAudiogram, freq4PTA)
+  
+        return np.mean(np.array(audiogram)[indices])
