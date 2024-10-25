@@ -48,6 +48,3 @@ class AudiogramEval:
         return fInterp(freq4PTA).mean()
  
 
-
-# %%
-print(AudiogramEval.fixedValue)
